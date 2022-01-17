@@ -1,0 +1,59 @@
+{
+    "status": "ok",
+    "totalResults": 4,
+    "articles": [
+    {
+    "source": {
+    "id": "fox-news",
+    "name": "Fox News"
+    },
+    "author": "Ryan Gaydos",
+    "title": "Alabama's Nick Saban delivers message to Georgia's Kirby Smart after national championship loss - Fox News",
+    "description": "Alabama coach Nick Saban and Georgia coach Kirby Smart met at midfield after the Bulldogs wrapped up their first national championship since 1980.",
+    "url": "https://www.foxnews.com/sports/alabama-nick-saban-message-georgia-kirby-smart-national-championship",
+    "urlToImage": "https://static.foxnews.com/foxnews.com/content/uploads/2022/01/Nick-Saban-Kirby-Smart.jpg",
+    "publishedAt": "2022-01-11T05:48:00Z",
+    "content": "Alabama coach Nick Saban and Georgia coach Kirby Smart met at midfield after the Bulldogs wrapped up their first national championship since 1980. The broadcast cameras that followed the two coaches… [+2060 chars]"
+    },
+    {
+    "source": {
+    "id": "cnn",
+    "name": "CNN"
+    },
+    "author": "Yoonjung Seo and Brad Lendon, CNN",
+    "title": "North Korea has launched an 'unidentified projectile,' South Korea says - CNN",
+    "description": "A suspected ballistic missile launched by North Korea on Tuesday was more advanced than the missile Pyongyang tested last week, reaching a velocity of more than 10 times the speed of sound, South Korea's Joint Chiefs of Staff sa"id" in a statement.",
+    "url": "https://www.cnn.com/2022/01/10/asia/north-korea-missile-intl/index.html",
+    "urlToImage": "https://cdn.cnn.com/cnnnext/dam/assets/220110210149-japan-defense-ministry-projectile-map-super-tease.jpg",
+    "publishedAt": "2022-01-11T05:22:00Z",
+    "content": "Seoul, South Korea (CNN)A suspected ballistic missile launched by North Korea on Tuesday was more advanced than the missile Pyongyang tested last week, reaching a velocity of more than 10 times the s… [+2207 chars]"
+    },
+    {
+    "source": {
+    "id": null,
+    "name": "ESPN"
+    },
+    "author": "Mark Schlabach",
+    "title": "The 2022 Way-Too-Early college football top 25 - ESPN",
+    "description": "With the 2021 season behind us already, it's time to start breaking down what 2022 has in store.",
+    "url": "https://www.espn.com/college-football/story/_/id/32999406/the-2022-way-too-early-college-football-top-25",
+    "urlToImage": "https://a2.espncdn.com/combiner/i?img=%2Fphoto%2F2022%2F0107%2Fnfl_way_too_early_top25_1296x729.jpg",
+    "publishedAt": "2022-01-11T05:01:19Z",
+    "content": "The 2021 college football season has just ended, with Georgia beating Alabama 33-18 in Monday night's national title game, but it's already time to look ahead to the 2022 season. Not surprisingly, N… [+29999 chars]"
+    },
+    {
+    "source": {
+    "id": null,
+    "name": "The Guardian"
+    },
+    "author": "Nina Lakhani",
+    "title": "US hit by 20 separate billion-dollar climate disasters in 2021, NOAA report says - The Guardian",
+    "description": "Year was third-costliest extreme weather year on record with affected communities spread from coast to coast",
+    "url": "https://amp.theguardian.com/environment/2022/jan/11/us-hit-by-20-separate-billion-dollar-climate-disasters-in-2021-noaa-report-says",
+    "urlToImage": null,
+    "publishedAt": "2022-01-11T04:35:00Z",
+    "content": "Climate crisisYear was third-costliest extreme weather year on record with affected communities spread from coast to coast Tue 11 Jan 2022 04.33 GMT The US was battered by 20 separate billion-dolla… [+4641 chars]"
+    }
+
+    ]
+    }
