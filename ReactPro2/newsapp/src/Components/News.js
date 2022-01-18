@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 export class News extends Component {
   articles = [];
-  static defaultProps = { country: "us", pageSize: 5 };
+  static defaultProps = { country: "us", pageSize: 5 ,category:"general"};
   constructor() {
     super();
     console.log("News constructor");
@@ -17,7 +17,7 @@ export class News extends Component {
   }
 
   async componentDidMount() {
-    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&apiKey=ed876a4e02f248398a6046085da7dbe3&page=${this.state.page}&pageSize=${this.props.pageSize}`;
+    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=ed876a4e02f248398a6046085da7dbe3&page=${this.state.page}&pageSize=${this.props.pageSize}`;
     let data = await fetch(url);
     let pasredData = await data.json();
     this.setState({
@@ -31,7 +31,7 @@ export class News extends Component {
         console.log("No News");
       } else {
         this.setState({ page: this.state.page + 1 });
-        let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&apiKey=ed876a4e02f248398a6046085da7dbe3&page=${this.state.page}&pageSize=${this.props.pageSize}`;
+        let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=ed876a4e02f248398a6046085da7dbe3&page=${this.state.page}&pageSize=${this.props.pageSize}`;
         let data = await fetch(url);
         let pasredData = await data.json();
         this.setState({ articles: pasredData.articles });
@@ -39,7 +39,7 @@ export class News extends Component {
     };
     const handlePreviousClick = async () => {
       this.setState({ page: this.state.page - 1 });
-      let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&apiKey=ed876a4e02f248398a6046085da7dbe3&page=${this.state.page}&pageSize=${this.props.pageSize}`;
+      let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=ed876a4e02f248398a6046085da7dbe3&page=${this.state.page}&pageSize=${this.props.pageSize}`;
       let data = await fetch(url);
       let pasredData = await data.json();
       this.setState({ articles: pasredData.articles });
