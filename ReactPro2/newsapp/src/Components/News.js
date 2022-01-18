@@ -46,7 +46,7 @@ export class News extends Component {
     };
     return (
       <div className="container my-3">
-        <h3>Top HeadLines</h3>
+        <h3 className="text-center" style={{margin:'35px 0px'}}>Top HeadLines</h3>
 
         <div className="row">
           {this.state.articles.map((element) => {
