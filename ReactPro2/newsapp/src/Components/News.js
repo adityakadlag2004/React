@@ -1,17 +1,23 @@
 import React, { Component } from "react";
 import Newsitem from "./Newsitem";
+import PropTypes from "prop-types";
 
 export class News extends Component {
   articles = [];
-
+  static defaultProps = { country: "us", pageSize: 5 };
   constructor() {
     super();
     console.log("News constructor");
-    this.state = { articles: this.articles, loading: false, page: 1 };
+    this.state = {
+      articles: this.articles,
+      loading: false,
+      page: 1,
+      country: "us",
+    };
   }
 
   async componentDidMount() {
-    let url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=ed876a4e02f248398a6046085da7dbe3&page=${this.state.page}&pageSize=20`;
+    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&apiKey=ed876a4e02f248398a6046085da7dbe3&page=${this.state.page}&pageSize=${this.props.pageSize}`;
     let data = await fetch(url);
     let pasredData = await data.json();
     this.setState({
@@ -25,7 +31,7 @@ export class News extends Component {
         console.log("No News");
       } else {
         this.setState({ page: this.state.page + 1 });
-        let url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=ed876a4e02f248398a6046085da7dbe3&page=${this.state.page}&pageSize=20`;
+        let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&apiKey=ed876a4e02f248398a6046085da7dbe3&page=${this.state.page}&pageSize=${this.props.pageSize}`;
         let data = await fetch(url);
         let pasredData = await data.json();
         this.setState({ articles: pasredData.articles });
@@ -33,7 +39,7 @@ export class News extends Component {
     };
     const handlePreviousClick = async () => {
       this.setState({ page: this.state.page - 1 });
-      let url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=ed876a4e02f248398a6046085da7dbe3&page=${this.state.page}&pageSize=20`;
+      let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&apiKey=ed876a4e02f248398a6046085da7dbe3&page=${this.state.page}&pageSize=${this.props.pageSize}`;
       let data = await fetch(url);
       let pasredData = await data.json();
       this.setState({ articles: pasredData.articles });
@@ -67,7 +73,11 @@ export class News extends Component {
           >
             &larr;Previous
           </button>
-          <button type="button" className="btn btn-dark" onClick={handleNextClick}>
+          <button
+            type="button"
+            className="btn btn-dark"
+            onClick={handleNextClick}
+          >
             Next&rarr;
           </button>
         </div>
