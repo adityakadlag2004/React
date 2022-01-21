@@ -10,7 +10,7 @@ class App extends React.Component {
       <div>
         <Navbar />
 
-        <News country="us" pageSize="6" category="science"/>
+        <News country="us" pageSize="6" category="general"/>
       </div>
     );
   }

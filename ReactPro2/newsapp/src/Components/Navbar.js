@@ -1,6 +1,12 @@
 import React, { Component } from "react";
 
 export class Navbar extends Component {
+  constructor() {
+    super();
+    this.state = {
+      category: "general",
+    };
+  }
   render() {
     return (
       <div>
