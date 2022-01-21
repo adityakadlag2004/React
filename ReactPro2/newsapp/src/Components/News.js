@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import Newsitem from "./Newsitem";
-import PropTypes from "prop-types";
+import Spinner from "./Spinner";
 
 export class News extends Component {
   articles = [];
-  static defaultProps = { country: "us", pageSize: 5 ,category:"general"};
+  static defaultProps = { country: "us", pageSize: 5, category: "general" };
   constructor() {
     super();
     console.log("News constructor");
@@ -30,13 +30,15 @@ export class News extends Component {
       if (this.state.page + 1 > Math.ceil(this.state.totalResults / 20)) {
         console.log("No News");
       } else {
-        this.setState({ page: this.state.page + 1 });
+        this.setState({ page: this.state.page + 1, loading: true });
+
         let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=ed876a4e02f248398a6046085da7dbe3&page=${this.state.page}&pageSize=${this.props.pageSize}`;
         let data = await fetch(url);
         let pasredData = await data.json();
-        this.setState({ articles: pasredData.articles });
+        this.setState({ articles: pasredData.articles, loading: false });
       }
     };
+
     const handlePreviousClick = async () => {
       this.setState({ page: this.state.page - 1 });
       let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=ed876a4e02f248398a6046085da7dbe3&page=${this.state.page}&pageSize=${this.props.pageSize}`;
@@ -46,8 +48,11 @@ export class News extends Component {
     };
     return (
       <div className="container my-3">
-        <h3 className="text-center" style={{margin:'35px 0px'}}>Top HeadLines</h3>
+        <h3 className="text-center" style={{ margin: "35px 0px" }}>
+          Top HeadLines
+        </h3>
 
+        {this.state.loading && <Spinner />}
         <div className="row">
           {this.state.articles.map((element) => {
             return (
@@ -74,6 +79,9 @@ export class News extends Component {
             &larr;Previous
           </button>
           <button
+            disabled={
+              this.state.page + 1 > Math.ceil(this.state.totalResults / 20)
+            }
             type="button"
             className="btn btn-dark"
             onClick={handleNextClick}
