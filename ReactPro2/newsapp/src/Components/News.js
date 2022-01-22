@@ -4,7 +4,12 @@ import Spinner from "./Spinner";
 
 export class News extends Component {
   articles = [];
-  static defaultProps = { country: "us", pageSize: 5, category: "general" };
+  static defaultProps = {
+    country: "us",
+    pageSize: 5,
+    category: "general",
+    time: "",
+  };
   constructor() {
     super();
     console.log("News constructor");
@@ -54,20 +59,24 @@ export class News extends Component {
 
         {this.state.loading && <Spinner />}
         <div className="row">
-          {!this.state.loading&&this.state.articles.map((element) => {
-            return (
-              <div className="col-md-4" key={element.url}>
-                <Newsitem
-                  title={element.title ? element.title.slice(0, 45) : ""}
-                  description={
-                    element.description ? element.description.slice(0, 88) : ""
-                  }
-                  imageurl={element.title ? element.urlToImage : ""}
-                  newsUrl={element.url ? element.url : ""}
-                />
-              </div>
-            );
-          })}
+          {!this.state.loading &&
+            this.state.articles.map((element) => {
+              return (
+                <div className="col-md-4" key={element.url}>
+                  <Newsitem
+                    title={element.title ? element.title.slice(0, 45) : ""}
+                    description={
+                      element.description
+                        ? element.description.slice(0, 88)
+                        : ""
+                    }
+                    imageurl={element.title ? element.urlToImage : ""}
+                    newsUrl={element.url ? element.url : ""}
+                    time={element.publishedAt ? element.publishedAt : ""}
+                  />
+                </div>
+              );
+            })}
         </div>
         <div className="container d-flex justify-content-between">
           <button
