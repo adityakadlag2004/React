@@ -2,10 +2,10 @@ import React, { Component } from "react";
 
 export class Newsitem extends Component {
   render() {
-    let { title, description, imageurl, newsUrl, time } = this.props;
+    let { title, description, imageurl, newsUrl, time, author } = this.props;
     return (
       <div>
-        <div className="card my-4">
+        <div className="card my-4 box-shadow py-3 py-sm-0">
           <img
             src={
               !imageurl
@@ -17,7 +17,9 @@ export class Newsitem extends Component {
             height={300}
           />
           <div className="card-body">
-            <h5 className="card-title">{title}...</h5>
+            <h5 className="card-title">
+              {title}...
+            </h5>
             <p className="card-text">{description}...</p>
             <a
               rel="noreferrer"
@@ -27,10 +29,11 @@ export class Newsitem extends Component {
             >
               Read More
             </a>
-            <p class="card-text my-2 mx-1">
-              <small class="text-muted ">{time}</small>
+            <p className="card-text my-2 mx-1">
+              <small className="text-muted ">
+                By {author?author:"Unknown"} on {new Date(time).toGMTString()}
+              </small>
             </p>
-            
           </div>
         </div>
       </div>
