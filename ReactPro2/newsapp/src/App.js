@@ -10,7 +10,7 @@ import {
 } from "react-router-dom";
 
 class App extends React.Component {
-  pageSize = 5;
+  pageSize = 6;
   render() {
     return (
       <div>
@@ -18,31 +18,31 @@ class App extends React.Component {
           <Navbar />
           <Switch>
             <Route exact path="/">
-              <News key="general"  country="in" pageSize={this.pageSize} category="general" />
+              <News key="general"  country="us" pageSize={this.pageSize} category="general" />
             </Route>
             <Route exact path="/business">
-              <News key="business" country="in" pageSize={this.pageSize} category="business" />
+              <News key="business" country="us" pageSize={this.pageSize} category="business" />
             </Route>
             <Route exact path="/general">
-              <News key="general" country="in" pageSize={this.pageSize} category="general" />
+              <News key="general" country="us" pageSize={this.pageSize} category="general" />
             </Route>
             <Route exact path="/health">
-              <News key="health" country="in" pageSize={this.pageSize} category="health" />
+              <News key="health" country="us" pageSize={this.pageSize} category="health" />
             </Route>
             <Route exact path="/science">
-              <News key="science" country="in" pageSize={this.pageSize} category="science" />
+              <News key="science" country="us" pageSize={this.pageSize} category="science" />
             </Route>
             <Route exact path="/entertainment">
               <News
               key="entertainment"
-                country="in"
+                country="us"
                 pageSize={this.pageSize}
                 category="entertainment"
               />
             </Route>
             <Route exact path="/technology">
               <News
-                country="in"
+                country="us"
                 pageSize={this.pageSize}
                 category="technology"
               />
