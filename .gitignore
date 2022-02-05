@@ -1,0 +1,14 @@
+Mern/inotebook/backend/node_modules/.bin/is-ci
+Mern/inotebook/backend/node_modules/.bin/nodemon
+Mern/inotebook/backend/node_modules/.bin/nodetouch
+node_modules
+/.pnp
+.pnp.js
+/build
+build
+.DS_Store
+.env.local
+/coverage
+npm-debug.log*
+
+

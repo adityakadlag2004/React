@@ -12,5 +12,8 @@
     "express": "^4.17.2",
     "mongoose": "^6.2.0",
     "mongos": "0.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
   }
 }
