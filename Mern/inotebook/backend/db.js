@@ -1,18 +1,22 @@
-require("dotenv").config();
 const mongoose = require("mongoose");
-const uri =
-  "mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false";
-//console.log(process.env.MONGO_URL.toString());
+
+const mongoURI = "mongodb://127.0.0.1:27017/?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false";
 
 const connectToMongo = () => {
-  mongoose.connect(uri, () => {
-    console.log("Connected to Server Succesfully");
+  mongoose.connect(mongoURI, { useNewUrlParser: true }, () => {
+    console.log("Connected to Mongo Successfully");
   });
 
-  // mongoose.connect(process.env.MONGO_URL, options, (err) => {
-  //   if (err) console.log(err);
-  //   else console.log("mongdb is connected");
-  // });
+  mongoose.connection
+    .once("open", () => {
+      console.log("Connected to DB");
+    })
+    .on("error", (error) => {
+      console.log("Error :- ", error);
+    });
 };
 
 module.exports = connectToMongo;
+
+
+

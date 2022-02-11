@@ -1,21 +1,14 @@
-const express = require("express");
-const router = express.Router();
-const User = require("../models/User");
+const express = require('express');
+const User = require('../models/User');
+const router = express.Router(); 
+const { body, validationResult } = require('express-validator');
 
-//Create a User :- POST on /api/auth
+// Create a User using: POST "/api/auth/". Doesn't require Auth
+router.post('/', (req, res)=>{ 
+    console.log(req.body);
+    const user = User(req.body);
+    user.save()
+    res.send(req.body);
+} )
 
-router.post("/", (req, res) => {
-  console.log(req.body)
-  const user = User(req.body)
-  user.save()
-  // user.save((err, result) => {
-  //   if (err) {
-  //     console.log(err);
-  //   } else {
-  //     console.log(result);
-  //   }
-  // });
-  res.send(user);
-})
-
-module.exports = router;
+module.exports = router
