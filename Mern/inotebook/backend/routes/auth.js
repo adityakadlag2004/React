@@ -2,6 +2,9 @@ const express = require("express");
 const User = require("../models/User");
 const router = express.Router();
 const { body, validationResult } = require("express-validator");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const JWT_SECRET = "THE_DEMO_JWT_SECRET";
 
 // Create a User using: POST "/api/auth/". Doesn't require Auth
 router.post(
@@ -19,6 +22,9 @@ router.post(
     } else {
       try {
         //Creating User
+        const salt = await bcrypt.genSalt(10);
+
+        var secPass = await bcrypt.hash(req.body.password, salt);
         let user = await User.findOne({ email: req.body.email });
         if (user) {
           return res.status(400).json({ error: "User Already Exists" });
@@ -26,12 +32,61 @@ router.post(
         user = await User.create({
           name: req.body.name,
           email: req.body.email,
-          password: req.body.password,
+          password: secPass,
         });
-        res.json(user);
+        const data = {
+          user: {
+            id: user.id,
+          },
+        };
+        const authToken = jwt.sign(data, JWT_SECRET);
+        res.send(authToken);
       } catch (error) {
         console.log(error.message);
-        res.status(500).send("Some Error Occured")
+        res.status(500).send("Some Error Occured");
+      }
+    }
+  }
+);
+
+// Login a User using: POST "/api/auth/login". Doesn't require Auth
+router.post(
+  "/login",
+  [
+    body("email", "Enter valid Email").isEmail(),
+    body("password", "Password Cannot be Blank").exists(),
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      console.log("Enter Valid Parameters");
+      return res.status(400).json({ errors: errors.array() });
+    } else {
+      const { email, password } = req.body;
+      try {
+        let user = await User.findOne({ email });
+        if (!user) {
+          return res
+            .status(400)
+            .json({ error: "Please Enter Correct Credentials" });
+        }
+        const passwordCompare = await bcrypt.compare(password, user.password);
+        if (!passwordCompare) {
+          return res
+            .status(400)
+            .json({ error: "Please Enter Correct Credentials" });
+        } else {
+          const data = {
+            user: {
+              id: user.id,
+            },
+          };
+          const authToken = jwt.sign(data, JWT_SECRET);
+          res.send(authToken);
+        }
+      } catch (error) {
+        console.log(error.message);
+        res.status(500).send("Internal Server Error Occured");
       }
     }
   }
