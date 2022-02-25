@@ -50,8 +50,6 @@ router.post(
   }
 );
 
-
-
 //ROUTE:2 Login a User using: POST "/api/auth/login". Doesn't require Auth
 router.post(
   "/login",
@@ -68,6 +66,7 @@ router.post(
       const { email, password } = req.body;
       try {
         let user = await User.findOne({ email });
+        
         if (!user) {
           return res
             .status(400)
@@ -94,10 +93,6 @@ router.post(
     }
   }
 );
-
-
-
-
 
 //ROUTE:3 Get User Details: POST "/api/auth/getuser".Login Required
 router.post("/getuser", fetchUser, async (req, res) => {
