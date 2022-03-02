@@ -1,21 +1,20 @@
 import "./App.css";
-import Navbar from "./components/Navbar";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import { Home } from "./components/Home";
 import About from "./components/About";
-import Home from "./components/Home";
 import NoteState from "./context/notes/NoteState";
 
 function App() {
   return (
     <>
       <NoteState>
-        <Navbar />
         <Router>
-          <div>
+          <Navbar />
+          <div className="container">
             <Routes>
-              <Route exact path="/about" element={<About />}></Route>
-              <Route exact path="/users" element={<About />}></Route>
-              <Route exact path="/" element={<Home />}></Route>
+              <Route exact path="/Home" element={<Home />} />
+              <Route exact path="/about" element={<About />} />
             </Routes>
           </div>
         </Router>
