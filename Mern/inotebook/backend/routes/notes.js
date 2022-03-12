@@ -43,42 +43,41 @@ router.post(
   }
 );
 
-//ROUTE:3 Update Note: POST "/api/notes/updatenote".Login Required
+// ROUTE 3: Update an existing Note using: PUT "/api/notes/updatenote". Login required
 router.put("/updatenote/:id", fetchUser, async (req, res) => {
+  const { title, description, tag } = req.body;
   try {
-    const { title, description, tag } = req.body;
-    //Create New Note
-    const newnote = {};
+    // Create a newNote object
+    const newNote = {};
     if (title) {
-      newnote.title = title;
+      newNote.title = title;
     }
     if (description) {
-      newnote.description = description;
+      newNote.description = description;
     }
     if (tag) {
-      newnote.tag = tag;
+      newNote.tag = tag;
     }
 
-    //Find the Note To be Updated
+    // Find the note to be updated and update it
     let note = await Note.findById(req.params.id);
     if (!note) {
-      res.status(404).send("Not Found");
-    }
-    if (note.user.toString() !== req.user.id) {
-      return res.send(401).send("Not Allowed");
+      return res.status(404).send("Not Found");
     }
 
+    if (note.user.toString() !== req.user.id) {
+      return res.status(401).send("Not Allowed");
+    }
     note = await Note.findByIdAndUpdate(
       req.params.id,
-      { $set: newnote },
+      { $set: newNote },
       { new: true }
     );
+    res.json({ note });
   } catch (error) {
-    console.log(error.message);
-    res.status(500).send("Some Error Occured");
+    console.error(error.message);
+    res.status(500).send("Internal Server Error");
   }
-
-  res.send(note);
 });
 
 //ROUTE:4 Delete Note: Delete "/api/notes/deletenote".Login Required

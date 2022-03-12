@@ -6,7 +6,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const JWT_SECRET = "THE_DEMO_JWT_SECRET";
 var fetchUser = require("../middleware/fetchUser");
-
+let success = false;
 //ROUTE:1 Create a User using: POST "/api/auth/". Doesn't require Auth
 router.post(
   "/createuser",
@@ -66,7 +66,7 @@ router.post(
       const { email, password } = req.body;
       try {
         let user = await User.findOne({ email });
-        
+
         if (!user) {
           return res
             .status(400)
@@ -74,9 +74,10 @@ router.post(
         }
         const passwordCompare = await bcrypt.compare(password, user.password);
         if (!passwordCompare) {
+          success = false;
           return res
             .status(400)
-            .json({ error: "Please Enter Correct Credentials" });
+            .json({ success, error: "Please Enter Correct Credentials" });
         } else {
           const data = {
             user: {
@@ -84,7 +85,8 @@ router.post(
             },
           };
           const authToken = jwt.sign(data, JWT_SECRET);
-          res.send(authToken);
+          success = true;
+          res.json({ authToken, success });
         }
       } catch (error) {
         console.log(error.message);
